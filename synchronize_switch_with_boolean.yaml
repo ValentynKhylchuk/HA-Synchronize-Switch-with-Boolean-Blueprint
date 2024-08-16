@@ -105,7 +105,7 @@ action:
 
       - choose:
           - conditions:
-              - condition: "{{ switch_2|length > 0 }}"
+              - "{{ switch_2|length > 0 }}"
             sequence:
               - choose:
                   - conditions:
