@@ -65,45 +65,45 @@ action:
               - choose:
                   - conditions:
                       - condition: state
-                        entity_id: control_entity
+                        entity_id: "{{ control_entity }}"
                         state: "off"
                     sequence:
                       - repeat:
                           sequence:
                             - service: switch.turn_off
                               target:
-                                entity_id: switch_1
+                                entity_id: "{{ switch_1 }}"
                             - delay:
-                                seconds: delay_time
+                                seconds: "{{ delay_time}}"
                           until:
                             - condition: or
                               conditions:
                                 - condition: state
-                                  entity_id: switch_1
+                                  entity_id: "{{ switch_1 }}"
                                   state: "off"
                                 - condition: state
-                                  entity_id: control_entity
+                                  entity_id: "{{ control_entity }}"
                                   state: "on"
                   - conditions:
                       - condition: state
-                        entity_id: control_entity
+                        entity_id: "{{ control_entity }}"
                         state: "on"
                     sequence:
                       - repeat:
                           sequence:
                             - service: switch.turn_on
                               target:
-                                entity_id: switch_1
+                                entity_id: "{{ switch_1 }}"
                             - delay:
-                                seconds: delay_time
+                                seconds: "{{ delay_time}}"
                           until:
                             - condition: or
                               conditions:
                                 - condition: state
-                                  entity_id: switch_1
+                                  entity_id: "{{ switch_1 }}"
                                   state: "on"
                                 - condition: state
-                                  entity_id: control_entity
+                                  entity_id: "{{ control_entity }}"
                                   state: "off"
 
       - choose:
@@ -114,45 +114,45 @@ action:
               - choose:
                   - conditions:
                       - condition: state
-                        entity_id: control_entity
+                        entity_id: "{{ control_entity }}"
                         state: "off"
                     sequence:
                       - repeat:
                           sequence:
                             - service: switch.turn_off
                               target:
-                                entity_id: switch_2
+                                entity_id: "{{ switch_2 }}"
                             - delay:
-                                seconds: delay_time
+                                seconds: "{{ delay_time}}"
                           until:
                             - condition: or
                               conditions:
                                 - condition: state
-                                  entity_id: switch_2
+                                  entity_id: "{{ switch_2 }}"
                                   state: "off"
                                 - condition: state
-                                  entity_id: control_entity
+                                  entity_id: "{{ control_entity }}"
                                   state: "on"
                   - conditions:
                       - condition: state
-                        entity_id: control_entity
+                        entity_id: "{{ control_entity }}"
                         state: "on"
                     sequence:
                       - repeat:
                           sequence:
                             - service: switch.turn_on
                               target:
-                                entity_id: switch_2
+                                entity_id: "{{ switch_2 }}"
                             - delay:
-                                seconds: delay_time
+                                seconds: "{{ delay_time}}"
                           until:
                             - condition: or
                               conditions:
                                 - condition: state
-                                  entity_id: switch_2
+                                  entity_id: "{{ switch_2 }}"
                                   state: "on"
                                 - condition: state
-                                  entity_id: control_entity
+                                  entity_id: "{{ control_entity }}"
                                   state: "off"
 
 mode: parallel
