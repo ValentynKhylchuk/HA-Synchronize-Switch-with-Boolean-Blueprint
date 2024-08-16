@@ -34,6 +34,7 @@ blueprint:
     switch_3:
       name: Switch 3 (Optional)
       description: The third switch entity to be controlled by the control entity.
+      default:
       selector:
         entity:
           domain: switch
@@ -41,6 +42,7 @@ blueprint:
     switch_4:
       name: Switch 4 (Optional)
       description: The fourth switch entity to be controlled by the control entity.
+      default:
       selector:
         entity:
           domain: switch
@@ -48,6 +50,7 @@ blueprint:
     switch_5:
       name: Switch 5 (Optional)
       description: The fifth switch entity to be controlled by the control entity.
+      default:
       selector:
         entity:
           domain: switch
@@ -55,6 +58,7 @@ blueprint:
     switch_6:
       name: Switch 6 (Optional)
       description: The sixth switch entity to be controlled by the control entity.
+      default:
       selector:
         entity:
           domain: switch
@@ -62,6 +66,7 @@ blueprint:
     switch_7:
       name: Switch 7 (Optional)
       description: The seventh switch entity to be controlled by the control entity.
+      default:
       selector:
         entity:
           domain: switch
@@ -69,6 +74,7 @@ blueprint:
     switch_8:
       name: Switch 8 (Optional)
       description: The eighth switch entity to be controlled by the control entity.
+      default:
       selector:
         entity:
           domain: switch
@@ -76,6 +82,7 @@ blueprint:
     switch_9:
       name: Switch 9 (Optional)
       description: The ninth switch entity to be controlled by the control entity.
+      default:
       selector:
         entity:
           domain: switch
@@ -83,6 +90,7 @@ blueprint:
     switch_10:
       name: Switch 10 (Optional)
       description: The tenth switch entity to be controlled by the control entity.
+      default:
       selector:
         entity:
           domain: switch
