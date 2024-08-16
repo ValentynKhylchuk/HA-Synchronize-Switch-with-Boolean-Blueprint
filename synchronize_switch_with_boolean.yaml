@@ -55,7 +55,7 @@ action:
           - conditions:
               - condition: state
                 entity_id: !input switch_1
-                state_not: "unavailable"  # Ensure the switch is available
+                value_template: "{{ states('!input switch_1') != 'unavailable' }}"  # Ensure the switch is available
             sequence:
               - choose:
                   - conditions:
@@ -105,7 +105,7 @@ action:
           - conditions:
               - condition: state
                 entity_id: !input switch_2
-                state_not: "unavailable"  # Ensure the switch is available
+                value_template: "{{ states('!input switch_2') != 'unavailable' }}"
             sequence:
               - choose:
                   - conditions:
