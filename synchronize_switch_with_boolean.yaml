@@ -107,7 +107,7 @@ action:
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ not not switch_2 }}"
+                value_template: "{{ switch_2 != '' }}"
             sequence:
               - choose:
                   - conditions:
