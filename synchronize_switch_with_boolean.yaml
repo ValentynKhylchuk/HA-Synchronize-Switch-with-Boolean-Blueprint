@@ -30,7 +30,7 @@ blueprint:
       selector:
         entity:
           domain: switch
-      default: ""
+      default:
 
     delay_time:
       name: Delay Time Between Checks
