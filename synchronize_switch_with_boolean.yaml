@@ -49,11 +49,15 @@ trigger:
 
 condition: []
 
+variables:
+  switch_1: !input switch_1
+  switch_2: !input switch_2
+
 action:
   - parallel:
       - choose:
           - conditions:
-              - condition: "{{ not not switch_1 }}"  # Ensure the switch is available
+              - "{{ not not switch_1 }}"  # Ensure the switch is available
             sequence:
               - choose:
                   - conditions:
@@ -101,7 +105,7 @@ action:
 
       - choose:
           - conditions:
-              - condition: "{{ light_target|length > 0 }}"
+              - condition: "{{ switch_2|length > 0 }}"
             sequence:
               - choose:
                   - conditions:
