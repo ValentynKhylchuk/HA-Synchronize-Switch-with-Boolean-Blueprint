@@ -1,10 +1,10 @@
 blueprint:
-  name: Synchronize (1-10) switches with control entity in parallel (simultaneously).
+  name: Synchronize (1-10) switches with control entity in parallel (symultaniously).
   description: >
     This blueprint synchronizes up to ten switches with the state of a control entity.
     The control entity can be either a switch or an input_boolean.
     It will ensure the switches are turned on or off to match the control entity and will repeat the action until the desired state is achieved for each switch.
-    It also will stop if the control entity is switched to another state.
+    It also will stop if controll entity is swiched to other state.
   domain: automation
 
   input:
@@ -30,7 +30,7 @@ blueprint:
       selector:
         entity:
           domain: switch
-      default: ""
+      default:
 
     delay_time:
       name: Delay Time Between Checks
@@ -47,112 +47,104 @@ trigger:
   - platform: state
     entity_id: !input control_entity
 
-condition: []
-
-variables:
-  switch_1: !input switch_1
-  switch_2: !input switch_2
-  delay_time: !input delay_time
-  control_entity: !input control_entity
-
 action:
   - parallel:
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ switch_1 is not none }}"  # Ensure the switch is available
+                value_template: "{{ not not switch_1 }}"  # Ensure the switch is available
             sequence:
               - choose:
                   - conditions:
                       - condition: state
-                        entity_id: "{{ control_entity }}"
+                        entity_id: !input control_entity
                         state: "off"
                     sequence:
                       - repeat:
                           sequence:
                             - service: switch.turn_off
                               target:
-                                entity_id: "{{ switch_1 }}"
+                                entity_id: !input switch_1
                             - delay:
-                                seconds: "{{ delay_time}}"
+                                seconds: !input delay_time
                           until:
                             - condition: or
                               conditions:
                                 - condition: state
-                                  entity_id: "{{ switch_1 }}"
+                                  entity_id: !input switch_1
                                   state: "off"
                                 - condition: state
-                                  entity_id: "{{ control_entity }}"
+                                  entity_id: !input control_entity
                                   state: "on"
                   - conditions:
                       - condition: state
-                        entity_id: "{{ control_entity }}"
+                        entity_id: !input control_entity
                         state: "on"
                     sequence:
                       - repeat:
                           sequence:
                             - service: switch.turn_on
                               target:
-                                entity_id: "{{ switch_1 }}"
+                                entity_id: !input switch_1
                             - delay:
-                                seconds: "{{ delay_time}}"
+                                seconds: !input delay_time
                           until:
                             - condition: or
                               conditions:
                                 - condition: state
-                                  entity_id: "{{ switch_1 }}"
+                                  entity_id: !input switch_1
                                   state: "on"
                                 - condition: state
-                                  entity_id: "{{ control_entity }}"
+                                  entity_id: !input control_entity
                                   state: "off"
 
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ switch_2 is not none and switch_2 != '' }}"
+                value_template: "{{ not not switch_2 }}"
             sequence:
               - choose:
                   - conditions:
                       - condition: state
-                        entity_id: "{{ control_entity }}"
+                        entity_id: !input control_entity
                         state: "off"
                     sequence:
                       - repeat:
                           sequence:
                             - service: switch.turn_off
                               target:
-                                entity_id: "{{ switch_2 }}"
+                                entity_id: !input switch_2
                             - delay:
-                                seconds: "{{ delay_time}}"
+                                seconds: !input delay_time
                           until:
                             - condition: or
                               conditions:
                                 - condition: state
-                                  entity_id: "{{ switch_2 }}"
+                                  entity_id: !input switch_2
                                   state: "off"
                                 - condition: state
-                                  entity_id: "{{ control_entity }}"
+                                  entity_id: !input control_entity
                                   state: "on"
                   - conditions:
                       - condition: state
-                        entity_id: "{{ control_entity }}"
+                        entity_id: !input control_entity
                         state: "on"
                     sequence:
                       - repeat:
                           sequence:
                             - service: switch.turn_on
                               target:
-                                entity_id: "{{ switch_2 }}"
+                                entity_id: !input switch_2
                             - delay:
-                                seconds: "{{ delay_time}}"
+                                seconds: !input delay_time
                           until:
                             - condition: or
                               conditions:
                                 - condition: state
-                                  entity_id: "{{ switch_2 }}"
+                                  entity_id: !input switch_2
                                   state: "on"
                                 - condition: state
-                                  entity_id: "{{ control_entity }}"
+                                  entity_id: !input control_entity
                                   state: "off"
 
 mode: parallel
