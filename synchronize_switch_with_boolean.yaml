@@ -57,7 +57,8 @@ action:
   - parallel:
       - choose:
           - conditions:
-              - "{{ not not switch_1 }}"  # Ensure the switch is available
+              - condition: template
+                value_template: "{{ not not switch_1 }}"  # Ensure the switch is available
             sequence:
               - choose:
                   - conditions:
@@ -105,7 +106,8 @@ action:
 
       - choose:
           - conditions:
-              - "{{ switch_2|length > 0 }}"
+              - condition: template
+                value_template: "{{ switch_2|length > 0 }}"
             sequence:
               - choose:
                   - conditions:
