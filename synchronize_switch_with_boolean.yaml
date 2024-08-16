@@ -28,6 +28,15 @@ blueprint:
           max: 3600
           unit_of_measurement: seconds
           mode: box
+    attempts:
+      name: attempts
+      description: The amount of attempts to wtry to see if the switch has been set to the correct state.
+      default: 60
+      selector:
+        number:
+          min: 1
+          max: 3600
+          mode: box
 
 trigger:
   - platform: state
@@ -58,6 +67,8 @@ action:
                     - condition: state
                       entity_id: !input boolean_entity
                       state: "on"
+                    - condition: template
+                      value_template: "{{ repeat.index >= attempts }}"
       - conditions:
           - condition: state
             entity_id: !input boolean_entity
@@ -79,5 +90,7 @@ action:
                     - condition: state
                       entity_id: !input boolean_entity
                       state: "off"
+                    - condition: template
+                      value_template: "{{ repeat.index >= attempts }}"
 
 mode: single
