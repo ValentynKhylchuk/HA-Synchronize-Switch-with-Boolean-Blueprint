@@ -32,14 +32,6 @@ blueprint:
           domain: switch
       default: ""
 
-    switch_3:
-      name: Switch 3 (Optional)
-      description: The third switch entity to be controlled by the control entity.
-      selector:
-        entity:
-          domain: switch
-      default: ""
-
     delay_time:
       name: Delay Time Between Checks
       description: The amount of time to wait between each check to see if the switches have been set to the correct state.
@@ -62,7 +54,7 @@ action:
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ input.switch_1 is defined and input.switch_1 != '' }}"
+                value_template: "{{ input.switch_1 is defined }}"
             sequence:
               - choose:
                   - conditions:
@@ -111,7 +103,7 @@ action:
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ input.switch_2 is defined and input.switch_2 != '' }}"
+                value_template: "{{ input.switch_2 is defined }}"
             sequence:
               - choose:
                   - conditions:
@@ -152,55 +144,6 @@ action:
                               conditions:
                                 - condition: state
                                   entity_id: !input switch_2
-                                  state: "on"
-                                - condition: state
-                                  entity_id: !input control_entity
-                                  state: "off"
-
-      - choose:
-          - conditions:
-              - condition: template
-                value_template: "{{ input.switch_3 is defined and input.switch_3 != '' }}"
-            sequence:
-              - choose:
-                  - conditions:
-                      - condition: state
-                        entity_id: !input control_entity
-                        state: "off"
-                    sequence:
-                      - repeat:
-                          sequence:
-                            - service: switch.turn_off
-                              target:
-                                entity_id: !input switch_3
-                            - delay:
-                                seconds: !input delay_time
-                          until:
-                            - condition: or
-                              conditions:
-                                - condition: state
-                                  entity_id: !input switch_3
-                                  state: "off"
-                                - condition: state
-                                  entity_id: !input control_entity
-                                  state: "on"
-                  - conditions:
-                      - condition: state
-                        entity_id: !input control_entity
-                        state: "on"
-                    sequence:
-                      - repeat:
-                          sequence:
-                            - service: switch.turn_on
-                              target:
-                                entity_id: !input switch_3
-                            - delay:
-                                seconds: !input delay_time
-                          until:
-                            - condition: or
-                              conditions:
-                                - condition: state
-                                  entity_id: !input switch_3
                                   state: "on"
                                 - condition: state
                                   entity_id: !input control_entity
