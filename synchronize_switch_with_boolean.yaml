@@ -27,74 +27,74 @@ blueprint:
     switch_2:
       name: Switch 2 (Optional)
       description: The second switch entity to be controlled by the control entity.
-      default:
       selector:
         entity:
           domain: switch
+      default: ""
 
     switch_3:
       name: Switch 3 (Optional)
       description: The third switch entity to be controlled by the control entity.
-      default:
       selector:
         entity:
           domain: switch
+      default: ""
 
     switch_4:
       name: Switch 4 (Optional)
       description: The fourth switch entity to be controlled by the control entity.
-      default:
       selector:
         entity:
           domain: switch
+      default: ""
 
     switch_5:
       name: Switch 5 (Optional)
       description: The fifth switch entity to be controlled by the control entity.
-      default:
       selector:
         entity:
           domain: switch
+      default: ""
 
     switch_6:
       name: Switch 6 (Optional)
       description: The sixth switch entity to be controlled by the control entity.
-      default:
       selector:
         entity:
           domain: switch
+      default: ""
 
     switch_7:
       name: Switch 7 (Optional)
       description: The seventh switch entity to be controlled by the control entity.
-      default:
       selector:
         entity:
           domain: switch
+      default: ""
 
     switch_8:
       name: Switch 8 (Optional)
       description: The eighth switch entity to be controlled by the control entity.
-      default:
       selector:
         entity:
           domain: switch
+      default: ""
 
     switch_9:
       name: Switch 9 (Optional)
       description: The ninth switch entity to be controlled by the control entity.
-      default:
       selector:
         entity:
           domain: switch
+      default: ""
 
     switch_10:
       name: Switch 10 (Optional)
       description: The tenth switch entity to be controlled by the control entity.
-      default:
       selector:
         entity:
           domain: switch
+      default: ""
 
     delay_time:
       name: Delay Time Between Checks
@@ -115,485 +115,504 @@ condition: []
 
 action:
   - parallel:
+      # Switch 1 block
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ input.switch_1 is defined }}"
-              - condition: state
-                entity_id: !input control_entity
-                state: "off"
-            sequence:
-              - repeat:
+                value_template: "{{ input.switch_1 is defined and input.switch_1 != '' }}"
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: !input control_entity
+                      state: "off"
                   sequence:
-                    - service: switch.turn_off
-                      target:
-                        entity_id: !input switch_1
-                    - delay:
-                        seconds: !input delay_time
-                  until:
-                    - condition: or
-                      conditions:
-                        - condition: state
-                          entity_id: !input switch_1
-                          state: "off"
-                        - condition: state
-                          entity_id: !input control_entity
-                          state: "on"
-          - conditions:
-              - condition: template
-                value_template: "{{ input.switch_1 is defined }}"
-              - condition: state
-                entity_id: !input control_entity
-                state: "on"
-            sequence:
-              - repeat:
+                    - repeat:
+                        sequence:
+                          - service: switch.turn_off
+                            target:
+                              entity_id: !input switch_1
+                          - delay:
+                              seconds: !input delay_time
+                        until:
+                          - condition: or
+                            conditions:
+                              - condition: state
+                                entity_id: !input switch_1
+                                state: "off"
+                              - condition: state
+                                entity_id: !input control_entity
+                                state: "on"
+                - conditions:
+                    - condition: state
+                      entity_id: !input control_entity
+                      state: "on"
                   sequence:
-                    - service: switch.turn_on
-                      target:
-                        entity_id: !input switch_1
-                    - delay:
-                        seconds: !input delay_time
-                  until:
-                    - condition: or
-                      conditions:
-                        - condition: state
-                          entity_id: !input switch_1
-                          state: "on"
-                        - condition: state
-                          entity_id: !input control_entity
-                          state: "off"
+                    - repeat:
+                        sequence:
+                          - service: switch.turn_on
+                            target:
+                              entity_id: !input switch_1
+                          - delay:
+                              seconds: !input delay_time
+                        until:
+                          - condition: or
+                            conditions:
+                              - condition: state
+                                entity_id: !input switch_1
+                                state: "on"
+                              - condition: state
+                                entity_id: !input control_entity
+                                state: "off"
 
-      # Repeat the same structure for switches 2 to 10
+      # Switch 2 block
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ input.switch_2 is defined }}"
-              - condition: state
-                entity_id: !input control_entity
-                state: "off"
-            sequence:
-              - repeat:
+                value_template: "{{ input.switch_2 is defined and input.switch_2 != '' }}"
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: !input control_entity
+                      state: "off"
                   sequence:
-                    - service: switch.turn_off
-                      target:
-                        entity_id: !input switch_2
-                    - delay:
-                        seconds: !input delay_time
-                  until:
-                    - condition: or
-                      conditions:
-                        - condition: state
-                          entity_id: !input switch_2
-                          state: "off"
-                        - condition: state
-                          entity_id: !input control_entity
-                          state: "on"
-          - conditions:
-              - condition: template
-                value_template: "{{ input.switch_2 is defined }}"
-              - condition: state
-                entity_id: !input control_entity
-                state: "on"
-            sequence:
-              - repeat:
+                    - repeat:
+                        sequence:
+                          - service: switch.turn_off
+                            target:
+                              entity_id: !input switch_2
+                          - delay:
+                              seconds: !input delay_time
+                        until:
+                          - condition: or
+                            conditions:
+                              - condition: state
+                                entity_id: !input switch_2
+                                state: "off"
+                              - condition: state
+                                entity_id: !input control_entity
+                                state: "on"
+                - conditions:
+                    - condition: state
+                      entity_id: !input control_entity
+                      state: "on"
                   sequence:
-                    - service: switch.turn_on
-                      target:
-                        entity_id: !input switch_2
-                    - delay:
-                        seconds: !input delay_time
-                  until:
-                    - condition: or
-                      conditions:
-                        - condition: state
-                          entity_id: !input switch_2
-                          state: "on"
-                        - condition: state
-                          entity_id: !input control_entity
-                          state: "off"
+                    - repeat:
+                        sequence:
+                          - service: switch.turn_on
+                            target:
+                              entity_id: !input switch_2
+                          - delay:
+                              seconds: !input delay_time
+                        until:
+                          - condition: or
+                            conditions:
+                              - condition: state
+                                entity_id: !input switch_2
+                                state: "on"
+                              - condition: state
+                                entity_id: !input control_entity
+                                state: "off"
 
+      # Switch 3 block
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ input.switch_3 is defined }}"
-              - condition: state
-                entity_id: !input control_entity
-                state: "off"
-            sequence:
-              - repeat:
+                value_template: "{{ input.switch_3 is defined and input.switch_3 != '' }}"
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: !input control_entity
+                      state: "off"
                   sequence:
-                    - service: switch.turn_off
-                      target:
-                        entity_id: !input switch_3
-                    - delay:
-                        seconds: !input delay_time
-                  until:
-                    - condition: or
-                      conditions:
-                        - condition: state
-                          entity_id: !input switch_3
-                          state: "off"
-                        - condition: state
-                          entity_id: !input control_entity
-                          state: "on"
-          - conditions:
-              - condition: template
-                value_template: "{{ input.switch_3 is defined }}"
-              - condition: state
-                entity_id: !input control_entity
-                state: "on"
-            sequence:
-              - repeat:
+                    - repeat:
+                        sequence:
+                          - service: switch.turn_off
+                            target:
+                              entity_id: !input switch_3
+                          - delay:
+                              seconds: !input delay_time
+                        until:
+                          - condition: or
+                            conditions:
+                              - condition: state
+                                entity_id: !input switch_3
+                                state: "off"
+                              - condition: state
+                                entity_id: !input control_entity
+                                state: "on"
+                - conditions:
+                    - condition: state
+                      entity_id: !input control_entity
+                      state: "on"
                   sequence:
-                    - service: switch.turn_on
-                      target:
-                        entity_id: !input switch_3
-                    - delay:
-                        seconds: !input delay_time
-                  until:
-                    - condition: or
-                      conditions:
-                        - condition: state
-                          entity_id: !input switch_3
-                          state: "on"
-                        - condition: state
-                          entity_id: !input control_entity
-                          state: "off"
+                    - repeat:
+                        sequence:
+                          - service: switch.turn_on
+                            target:
+                              entity_id: !input switch_3
+                          - delay:
+                              seconds: !input delay_time
+                        until:
+                          - condition: or
+                            conditions:
+                              - condition: state
+                                entity_id: !input switch_3
+                                state: "on"
+                              - condition: state
+                                entity_id: !input control_entity
+                                state: "off"
 
+      # Switch 4 block
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ input.switch_4 is defined }}"
-              - condition: state
-                entity_id: !input control_entity
-                state: "off"
-            sequence:
-              - repeat:
+                value_template: "{{ input.switch_4 is defined and input.switch_4 != '' }}"
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: !input control_entity
+                      state: "off"
                   sequence:
-                    - service: switch.turn_off
-                      target:
-                        entity_id: !input switch_4
-                    - delay:
-                        seconds: !input delay_time
-                  until:
-                    - condition: or
-                      conditions:
-                        - condition: state
-                          entity_id: !input switch_4
-                          state: "off"
-                        - condition: state
-                          entity_id: !input control_entity
-                          state: "on"
-          - conditions:
-              - condition: template
-                value_template: "{{ input.switch_4 is defined }}"
-              - condition: state
-                entity_id: !input control_entity
-                state: "on"
-            sequence:
-              - repeat:
+                    - repeat:
+                        sequence:
+                          - service: switch.turn_off
+                            target:
+                              entity_id: !input switch_4
+                          - delay:
+                              seconds: !input delay_time
+                        until:
+                          - condition: or
+                            conditions:
+                              - condition: state
+                                entity_id: !input switch_4
+                                state: "off"
+                              - condition: state
+                                entity_id: !input control_entity
+                                state: "on"
+                - conditions:
+                    - condition: state
+                      entity_id: !input control_entity
+                      state: "on"
                   sequence:
-                    - service: switch.turn_on
-                      target:
-                        entity_id: !input switch_4
-                    - delay:
-                        seconds: !input delay_time
-                  until:
-                    - condition: or
-                      conditions:
-                        - condition: state
-                          entity_id: !input switch_4
-                          state: "on"
-                        - condition: state
-                          entity_id: !input control_entity
-                          state: "off"
+                    - repeat:
+                        sequence:
+                          - service: switch.turn_on
+                            target:
+                              entity_id: !input switch_4
+                          - delay:
+                              seconds: !input delay_time
+                        until:
+                          - condition: or
+                            conditions:
+                              - condition: state
+                                entity_id: !input switch_4
+                                state: "on"
+                              - condition: state
+                                entity_id: !input control_entity
+                                state: "off"
 
+      # Switch 5 block
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ input.switch_5 is defined }}"
-              - condition: state
-                entity_id: !input control_entity
-                state: "off"
-            sequence:
-              - repeat:
+                value_template: "{{ input.switch_5 is defined and input.switch_5 != '' }}"
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: !input control_entity
+                      state: "off"
                   sequence:
-                    - service: switch.turn_off
-                      target:
-                        entity_id: !input switch_5
-                    - delay:
-                        seconds: !input delay_time
-                  until:
-                    - condition: or
-                      conditions:
-                        - condition: state
-                          entity_id: !input switch_5
-                          state: "off"
-                        - condition: state
-                          entity_id: !input control_entity
-                          state: "on"
-          - conditions:
-              - condition: template
-                value_template: "{{ input.switch_5 is defined }}"
-              - condition: state
-                entity_id: !input control_entity
-                state: "on"
-            sequence:
-              - repeat:
+                    - repeat:
+                        sequence:
+                          - service: switch.turn_off
+                            target:
+                              entity_id: !input switch_5
+                          - delay:
+                              seconds: !input delay_time
+                        until:
+                          - condition: or
+                            conditions:
+                              - condition: state
+                                entity_id: !input switch_5
+                                state: "off"
+                              - condition: state
+                                entity_id: !input control_entity
+                                state: "on"
+                - conditions:
+                    - condition: state
+                      entity_id: !input control_entity
+                      state: "on"
                   sequence:
-                    - service: switch.turn_on
-                      target:
-                        entity_id: !input switch_5
-                    - delay:
-                        seconds: !input delay_time
-                  until:
-                    - condition: or
-                      conditions:
-                        - condition: state
-                          entity_id: !input switch_5
-                          state: "on"
-                        - condition: state
-                          entity_id: !input control_entity
-                          state: "off"
+                    - repeat:
+                        sequence:
+                          - service: switch.turn_on
+                            target:
+                              entity_id: !input switch_5
+                          - delay:
+                              seconds: !input delay_time
+                        until:
+                          - condition: or
+                            conditions:
+                              - condition: state
+                                entity_id: !input switch_5
+                                state: "on"
+                              - condition: state
+                                entity_id: !input control_entity
+                                state: "off"
 
+      # Switch 6 block
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ input.switch_6 is defined }}"
-              - condition: state
-                entity_id: !input control_entity
-                state: "off"
-            sequence:
-              - repeat:
+                value_template: "{{ input.switch_6 is defined and input.switch_6 != '' }}"
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: !input control_entity
+                      state: "off"
                   sequence:
-                    - service: switch.turn_off
-                      target:
-                        entity_id: !input switch_6
-                    - delay:
-                        seconds: !input delay_time
-                  until:
-                    - condition: or
-                      conditions:
-                        - condition: state
-                          entity_id: !input switch_6
-                          state: "off"
-                        - condition: state
-                          entity_id: !input control_entity
-                          state: "on"
-          - conditions:
-              - condition: template
-                value_template: "{{ input.switch_6 is defined }}"
-              - condition: state
-                entity_id: !input control_entity
-                state: "on"
-            sequence:
-              - repeat:
+                    - repeat:
+                        sequence:
+                          - service: switch.turn_off
+                            target:
+                              entity_id: !input switch_6
+                          - delay:
+                              seconds: !input delay_time
+                        until:
+                          - condition: or
+                            conditions:
+                              - condition: state
+                                entity_id: !input switch_6
+                                state: "off"
+                              - condition: state
+                                entity_id: !input control_entity
+                                state: "on"
+                - conditions:
+                    - condition: state
+                      entity_id: !input control_entity
+                      state: "on"
                   sequence:
-                    - service: switch.turn_on
-                      target:
-                        entity_id: !input switch_6
-                    - delay:
-                        seconds: !input delay_time
-                  until:
-                    - condition: or
-                      conditions:
-                        - condition: state
-                          entity_id: !input switch_6
-                          state: "on"
-                        - condition: state
-                          entity_id: !input control_entity
-                          state: "off"
+                    - repeat:
+                        sequence:
+                          - service: switch.turn_on
+                            target:
+                              entity_id: !input switch_6
+                          - delay:
+                              seconds: !input delay_time
+                        until:
+                          - condition: or
+                            conditions:
+                              - condition: state
+                                entity_id: !input switch_6
+                                state: "on"
+                              - condition: state
+                                entity_id: !input control_entity
+                                state: "off"
 
+      # Switch 7 block
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ input.switch_7 is defined }}"
-              - condition: state
-                entity_id: !input control_entity
-                state: "off"
-            sequence:
-              - repeat:
+                value_template: "{{ input.switch_7 is defined and input.switch_7 != '' }}"
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: !input control_entity
+                      state: "off"
                   sequence:
-                    - service: switch.turn_off
-                      target:
-                        entity_id: !input switch_7
-                    - delay:
-                        seconds: !input delay_time
-                  until:
-                    - condition: or
-                      conditions:
-                        - condition: state
-                          entity_id: !input switch_7
-                          state: "off"
-                        - condition: state
-                          entity_id: !input control_entity
-                          state: "on"
-          - conditions:
-              - condition: template
-                value_template: "{{ input.switch_7 is defined }}"
-              - condition: state
-                entity_id: !input control_entity
-                state: "on"
-            sequence:
-              - repeat:
+                    - repeat:
+                        sequence:
+                          - service: switch.turn_off
+                            target:
+                              entity_id: !input switch_7
+                          - delay:
+                              seconds: !input delay_time
+                        until:
+                          - condition: or
+                            conditions:
+                              - condition: state
+                                entity_id: !input switch_7
+                                state: "off"
+                              - condition: state
+                                entity_id: !input control_entity
+                                state: "on"
+                - conditions:
+                    - condition: state
+                      entity_id: !input control_entity
+                      state: "on"
                   sequence:
-                    - service: switch.turn_on
-                      target:
-                        entity_id: !input switch_7
-                    - delay:
-                        seconds: !input delay_time
-                  until:
-                    - condition: or
-                      conditions:
-                        - condition: state
-                          entity_id: !input switch_7
-                          state: "on"
-                        - condition: state
-                          entity_id: !input control_entity
-                          state: "off"
+                    - repeat:
+                        sequence:
+                          - service: switch.turn_on
+                            target:
+                              entity_id: !input switch_7
+                          - delay:
+                              seconds: !input delay_time
+                        until:
+                          - condition: or
+                            conditions:
+                              - condition: state
+                                entity_id: !input switch_7
+                                state: "on"
+                              - condition: state
+                                entity_id: !input control_entity
+                                state: "off"
 
+      # Switch 8 block
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ input.switch_8 is defined }}"
-              - condition: state
-                entity_id: !input control_entity
-                state: "off"
-            sequence:
-              - repeat:
+                value_template: "{{ input.switch_8 is defined and input.switch_8 != '' }}"
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: !input control_entity
+                      state: "off"
                   sequence:
-                    - service: switch.turn_off
-                      target:
-                        entity_id: !input switch_8
-                    - delay:
-                        seconds: !input delay_time
-                  until:
-                    - condition: or
-                      conditions:
-                        - condition: state
-                          entity_id: !input switch_8
-                          state: "off"
-                        - condition: state
-                          entity_id: !input control_entity
-                          state: "on"
-          - conditions:
-              - condition: template
-                value_template: "{{ input.switch_8 is defined }}"
-              - condition: state
-                entity_id: !input control_entity
-                state: "on"
-            sequence:
-              - repeat:
+                    - repeat:
+                        sequence:
+                          - service: switch.turn_off
+                            target:
+                              entity_id: !input switch_8
+                          - delay:
+                              seconds: !input delay_time
+                        until:
+                          - condition: or
+                            conditions:
+                              - condition: state
+                                entity_id: !input switch_8
+                                state: "off"
+                              - condition: state
+                                entity_id: !input control_entity
+                                state: "on"
+                - conditions:
+                    - condition: state
+                      entity_id: !input control_entity
+                      state: "on"
                   sequence:
-                    - service: switch.turn_on
-                      target:
-                        entity_id: !input switch_8
-                    - delay:
-                        seconds: !input delay_time
-                  until:
-                    - condition: or
-                      conditions:
-                        - condition: state
-                          entity_id: !input switch_8
-                          state: "on"
-                        - condition: state
-                          entity_id: !input control_entity
-                          state: "off"
+                    - repeat:
+                        sequence:
+                          - service: switch.turn_on
+                            target:
+                              entity_id: !input switch_8
+                          - delay:
+                              seconds: !input delay_time
+                        until:
+                          - condition: or
+                            conditions:
+                              - condition: state
+                                entity_id: !input switch_8
+                                state: "on"
+                              - condition: state
+                                entity_id: !input control_entity
+                                state: "off"
 
+      # Switch 9 block
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ input.switch_9 is defined }}"
-              - condition: state
-                entity_id: !input control_entity
-                state: "off"
-            sequence:
-              - repeat:
+                value_template: "{{ input.switch_9 is defined and input.switch_9 != '' }}"
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: !input control_entity
+                      state: "off"
                   sequence:
-                    - service: switch.turn_off
-                      target:
-                        entity_id: !input switch_9
-                    - delay:
-                        seconds: !input delay_time
-                  until:
-                    - condition: or
-                      conditions:
-                        - condition: state
-                          entity_id: !input switch_9
-                          state: "off"
-                        - condition: state
-                          entity_id: !input control_entity
-                          state: "on"
-          - conditions:
-              - condition: template
-                value_template: "{{ input.switch_9 is defined }}"
-              - condition: state
-                entity_id: !input control_entity
-                state: "on"
-            sequence:
-              - repeat:
+                    - repeat:
+                        sequence:
+                          - service: switch.turn_off
+                            target:
+                              entity_id: !input switch_9
+                          - delay:
+                              seconds: !input delay_time
+                        until:
+                          - condition: or
+                            conditions:
+                              - condition: state
+                                entity_id: !input switch_9
+                                state: "off"
+                              - condition: state
+                                entity_id: !input control_entity
+                                state: "on"
+                - conditions:
+                    - condition: state
+                      entity_id: !input control_entity
+                      state: "on"
                   sequence:
-                    - service: switch.turn_on
-                      target:
-                        entity_id: !input switch_9
-                    - delay:
-                        seconds: !input delay_time
-                  until:
-                    - condition: or
-                      conditions:
-                        - condition: state
-                          entity_id: !input switch_9
-                          state: "on"
-                        - condition: state
-                          entity_id: !input control_entity
-                          state: "off"
+                    - repeat:
+                        sequence:
+                          - service: switch.turn_on
+                            target:
+                              entity_id: !input switch_9
+                          - delay:
+                              seconds: !input delay_time
+                        until:
+                          - condition: or
+                            conditions:
+                              - condition: state
+                                entity_id: !input switch_9
+                                state: "on"
+                              - condition: state
+                                entity_id: !input control_entity
+                                state: "off"
 
+      # Switch 10 block
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ input.switch_10 is defined }}"
-              - condition: state
-                entity_id: !input control_entity
-                state: "off"
-            sequence:
-              - repeat:
+                value_template: "{{ input.switch_10 is defined and input.switch_10 != '' }}"
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: !input control_entity
+                      state: "off"
                   sequence:
-                    - service: switch.turn_off
-                      target:
-                        entity_id: !input switch_10
-                    - delay:
-                        seconds: !input delay_time
-                  until:
-                    - condition: or
-                      conditions:
-                        - condition: state
-                          entity_id: !input switch_10
-                          state: "off"
-                        - condition: state
-                          entity_id: !input control_entity
-                          state: "on"
-          - conditions:
-              - condition: template
-                value_template: "{{ input.switch_10 is defined }}"
-              - condition: state
-                entity_id: !input control_entity
-                state: "on"
-            sequence:
-              - repeat:
+                    - repeat:
+                        sequence:
+                          - service: switch.turn_off
+                            target:
+                              entity_id: !input switch_10
+                          - delay:
+                              seconds: !input delay_time
+                        until:
+                          - condition: or
+                            conditions:
+                              - condition: state
+                                entity_id: !input switch_10
+                                state: "off"
+                              - condition: state
+                                entity_id: !input control_entity
+                                state: "on"
+                - conditions:
+                    - condition: state
+                      entity_id: !input control_entity
+                      state: "on"
                   sequence:
-                    - service: switch.turn_on
-                      target:
-                        entity_id: !input switch_10
-                    - delay:
-                        seconds: !input delay_time
-                  until:
-                    - condition: or
-                      conditions:
-                        - condition: state
-                          entity_id: !input switch_10
-                          state: "on"
-                        - condition: state
-                          entity_id: !input control_entity
-                          state: "off"
+                    - repeat:
+                        sequence:
+                          - service: switch.turn_on
+                            target:
+                              entity_id: !input switch_10
+                          - delay:
+                              seconds: !input delay_time
+                        until:
+                          - condition: or
+                            conditions:
+                              - condition: state
+                                entity_id: !input switch_10
+                                state: "on"
+                              - condition: state
+                                entity_id: !input control_entity
+                                state: "off"
 
 mode: parallel
