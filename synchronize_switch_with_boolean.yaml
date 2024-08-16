@@ -22,6 +22,7 @@ blueprint:
       selector:
         entity:
           domain: switch
+
     switch_2:
       name: Switch 2 (Optional)
       description: The second switch entity to be controlled by the control entity.
