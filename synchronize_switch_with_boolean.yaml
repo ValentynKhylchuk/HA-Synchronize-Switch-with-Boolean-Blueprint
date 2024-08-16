@@ -53,8 +53,9 @@ action:
   - parallel:
       - choose:
           - conditions:
-              - condition: template
-                value_template: "{{ input.switch_1 is defined and input.switch_1 != '' }}"
+              - condition: state
+                entity_id: !input switch_1
+                state_not: "unavailable"  # Ensure the switch is available
             sequence:
               - choose:
                   - conditions:
@@ -102,8 +103,9 @@ action:
 
       - choose:
           - conditions:
-              - condition: template
-                value_template: "{{ input.switch_2 is defined and input.switch_2 != '' }}"
+              - condition: state
+                entity_id: !input switch_2
+                state_not: "unavailable"  # Ensure the switch is available
             sequence:
               - choose:
                   - conditions:
