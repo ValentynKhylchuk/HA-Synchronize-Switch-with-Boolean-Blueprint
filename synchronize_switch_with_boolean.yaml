@@ -52,7 +52,7 @@ action:
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ not not switch_1 }}"  # Ensure the switch is available
+                value_template: "{{ true }}"
             sequence:
               - choose:
                   - conditions:
@@ -101,7 +101,7 @@ action:
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ not not switch_2 }}"
+                value_template: "{{ switch_2 is not none and switch_2 != '' }}"
             sequence:
               - choose:
                   - conditions:
