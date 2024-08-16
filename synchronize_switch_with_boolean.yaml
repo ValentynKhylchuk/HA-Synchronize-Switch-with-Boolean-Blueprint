@@ -1,0 +1,82 @@
+blueprint:
+  name: Synchronize Switch with Boolean
+  description: >
+    This blueprint synchronizes a switch with the state of an input_boolean.
+    It will ensure the switch is turned on or off to match the boolean and will repeat the action until the desired state is achieved.
+  domain: automation
+  input:
+    boolean_entity:
+      name: Input Boolean
+      description: The input_boolean entity to control the switch.
+      selector:
+        entity:
+          domain: input_boolean
+    switch_entity:
+      name: Switch
+      description: The switch entity to be controlled by the boolean.
+      selector:
+        entity:
+          domain: switch
+    delay_time:
+      name: Delay Time Between Checks
+      description: The amount of time to wait between each check to see if the switch has been set to the correct state.
+      default: 1
+      selector:
+        number:
+          min: 1
+          max: 3600
+          unit_of_measurement: seconds
+          mode: box
+
+trigger:
+  - platform: state
+    entity_id: !input boolean_entity
+
+condition: []
+
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: !input boolean_entity
+            state: "off"
+        sequence:
+          - repeat:
+              sequence:
+                - service: switch.turn_off
+                  target:
+                    entity_id: !input switch_entity
+                - delay:
+                    seconds: !input delay_time
+              until:
+                - condition: or
+                  conditions:
+                    - condition: state
+                      entity_id: !input switch_entity
+                      state: "off"
+                    - condition: state
+                      entity_id: !input boolean_entity
+                      state: "on"
+      - conditions:
+          - condition: state
+            entity_id: !input boolean_entity
+            state: "on"
+        sequence:
+          - repeat:
+              sequence:
+                - service: switch.turn_on
+                  target:
+                    entity_id: !input switch_entity
+                - delay:
+                    seconds: !input delay_time
+              until:
+                - condition: or
+                  conditions:
+                    - condition: state
+                      entity_id: !input switch_entity
+                      state: "on"
+                    - condition: state
+                      entity_id: !input boolean_entity
+                      state: "off"
+
+mode: single
