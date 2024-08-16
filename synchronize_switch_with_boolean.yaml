@@ -118,7 +118,7 @@ action:
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ !input.switch_1 is defined }}"
+                value_template: "{{ input.switch_1 is defined }}"
               - condition: state
                 entity_id: !input control_entity
                 state: "off"
@@ -141,7 +141,7 @@ action:
                           state: "on"
           - conditions:
               - condition: template
-                value_template: "{{ !input.switch_1 is defined }}"
+                value_template: "{{ input.switch_1 is defined }}"
               - condition: state
                 entity_id: !input control_entity
                 state: "on"
@@ -167,7 +167,7 @@ action:
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ !input.switch_2 is defined }}"
+                value_template: "{{ input.switch_2 is defined }}"
               - condition: state
                 entity_id: !input control_entity
                 state: "off"
@@ -190,7 +190,7 @@ action:
                           state: "on"
           - conditions:
               - condition: template
-                value_template: "{{ !input.switch_2 is defined }}"
+                value_template: "{{ input.switch_2 is defined }}"
               - condition: state
                 entity_id: !input control_entity
                 state: "on"
@@ -215,7 +215,7 @@ action:
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ !input.switch_3 is defined }}"
+                value_template: "{{ input.switch_3 is defined }}"
               - condition: state
                 entity_id: !input control_entity
                 state: "off"
@@ -238,7 +238,7 @@ action:
                           state: "on"
           - conditions:
               - condition: template
-                value_template: "{{ !input.switch_3 is defined }}"
+                value_template: "{{ input.switch_3 is defined }}"
               - condition: state
                 entity_id: !input control_entity
                 state: "on"
@@ -263,7 +263,7 @@ action:
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ !input.switch_4 is defined }}"
+                value_template: "{{ input.switch_4 is defined }}"
               - condition: state
                 entity_id: !input control_entity
                 state: "off"
@@ -286,7 +286,7 @@ action:
                           state: "on"
           - conditions:
               - condition: template
-                value_template: "{{ !input.switch_4 is defined }}"
+                value_template: "{{ input.switch_4 is defined }}"
               - condition: state
                 entity_id: !input control_entity
                 state: "on"
@@ -311,7 +311,7 @@ action:
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ !input.switch_5 is defined }}"
+                value_template: "{{ input.switch_5 is defined }}"
               - condition: state
                 entity_id: !input control_entity
                 state: "off"
@@ -334,7 +334,7 @@ action:
                           state: "on"
           - conditions:
               - condition: template
-                value_template: "{{ !input.switch_5 is defined }}"
+                value_template: "{{ input.switch_5 is defined }}"
               - condition: state
                 entity_id: !input control_entity
                 state: "on"
@@ -359,7 +359,7 @@ action:
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ !input.switch_6 is defined }}"
+                value_template: "{{ input.switch_6 is defined }}"
               - condition: state
                 entity_id: !input control_entity
                 state: "off"
@@ -382,7 +382,7 @@ action:
                           state: "on"
           - conditions:
               - condition: template
-                value_template: "{{ !input.switch_6 is defined }}"
+                value_template: "{{ input.switch_6 is defined }}"
               - condition: state
                 entity_id: !input control_entity
                 state: "on"
@@ -407,7 +407,7 @@ action:
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ !input.switch_7 is defined }}"
+                value_template: "{{ input.switch_7 is defined }}"
               - condition: state
                 entity_id: !input control_entity
                 state: "off"
@@ -430,7 +430,7 @@ action:
                           state: "on"
           - conditions:
               - condition: template
-                value_template: "{{ !input.switch_7 is defined }}"
+                value_template: "{{ input.switch_7 is defined }}"
               - condition: state
                 entity_id: !input control_entity
                 state: "on"
@@ -455,7 +455,7 @@ action:
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ !input.switch_8 is defined }}"
+                value_template: "{{ input.switch_8 is defined }}"
               - condition: state
                 entity_id: !input control_entity
                 state: "off"
@@ -478,7 +478,7 @@ action:
                           state: "on"
           - conditions:
               - condition: template
-                value_template: "{{ !input.switch_8 is defined }}"
+                value_template: "{{ input.switch_8 is defined }}"
               - condition: state
                 entity_id: !input control_entity
                 state: "on"
@@ -503,7 +503,7 @@ action:
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ !input.switch_9 is defined }}"
+                value_template: "{{ input.switch_9 is defined }}"
               - condition: state
                 entity_id: !input control_entity
                 state: "off"
@@ -526,7 +526,7 @@ action:
                           state: "on"
           - conditions:
               - condition: template
-                value_template: "{{ !input.switch_9 is defined }}"
+                value_template: "{{ input.switch_9 is defined }}"
               - condition: state
                 entity_id: !input control_entity
                 state: "on"
@@ -551,7 +551,7 @@ action:
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ !input.switch_10 is defined }}"
+                value_template: "{{ input.switch_10 is defined }}"
               - condition: state
                 entity_id: !input control_entity
                 state: "off"
@@ -574,7 +574,7 @@ action:
                           state: "on"
           - conditions:
               - condition: template
-                value_template: "{{ !input.switch_10 is defined }}"
+                value_template: "{{ input.switch_10 is defined }}"
               - condition: state
                 entity_id: !input control_entity
                 state: "on"
