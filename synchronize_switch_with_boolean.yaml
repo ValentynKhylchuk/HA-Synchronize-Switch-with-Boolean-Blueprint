@@ -48,6 +48,9 @@ trigger:
 
 condition: []
 
+variables:
+  attempts: !input "attempts"
+
 action:
   - choose:
       - conditions:
