@@ -1,10 +1,10 @@
 blueprint:
-  name: Synchronize (1-10) switches with control entity in parallel (symultaniously).
+  name: Synchronize (1-10) switches with control entity in parallel (simultaneously).
   description: >
     This blueprint synchronizes up to ten switches with the state of a control entity.
     The control entity can be either a switch or an input_boolean.
     It will ensure the switches are turned on or off to match the control entity and will repeat the action until the desired state is achieved for each switch.
-    It also will stop if controll entity is swiched to other state.
+    It also will stop if the control entity is switched to another state.
   domain: automation
 
   input:
@@ -30,7 +30,7 @@ blueprint:
       selector:
         entity:
           domain: switch
-      default:
+      default: ""
 
     delay_time:
       name: Delay Time Between Checks
@@ -60,7 +60,7 @@ action:
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ not not switch_1 }}"  # Ensure the switch is available
+                value_template: "{{ switch_1 is not none }}"  # Ensure the switch is available
             sequence:
               - choose:
                   - conditions:
@@ -109,7 +109,7 @@ action:
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ switch_2 != '' }}"
+                value_template: "{{ switch_2 is not none and switch_2 != '' }}"
             sequence:
               - choose:
                   - conditions:
