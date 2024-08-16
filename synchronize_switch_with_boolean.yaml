@@ -54,7 +54,7 @@ action:
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ if input.switch_1 is not none }}"
+                value_template: "{{ input.switch_1 is defined and input.switch_1 != '' }}"
             sequence:
               - choose:
                   - conditions:
@@ -103,7 +103,7 @@ action:
       - choose:
           - conditions:
               - condition: template
-                value_template: "{{ if input.switch_2 is not none }}"
+                value_template: "{{ input.switch_2 is defined and input.switch_2 != '' }}"
             sequence:
               - choose:
                   - conditions:
