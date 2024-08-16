@@ -119,14 +119,14 @@ action:
                           sequence:
                             - service: switch.turn_off
                               target:
-                                entity_id: !input switch_2
+                                entity_id: switch_2
                             - delay:
                                 seconds: !input delay_time
                           until:
                             - condition: or
                               conditions:
                                 - condition: state
-                                  entity_id: !input switch_2
+                                  entity_id: switch_2
                                   state: "off"
                                 - condition: state
                                   entity_id: !input control_entity
@@ -140,14 +140,14 @@ action:
                           sequence:
                             - service: switch.turn_on
                               target:
-                                entity_id: !input switch_2
+                                entity_id: switch_2
                             - delay:
                                 seconds: !input delay_time
                           until:
                             - condition: or
                               conditions:
                                 - condition: state
-                                  entity_id: !input switch_2
+                                  entity_id: switch_2
                                   state: "on"
                                 - condition: state
                                   entity_id: !input control_entity
