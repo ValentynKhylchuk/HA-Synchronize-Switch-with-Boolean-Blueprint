@@ -1,10 +1,11 @@
-
 blueprint:
   name: Synchronize Switch with Boolean
   description: >
     This blueprint synchronizes a switch with the state of an input_boolean.
-    It will ensure the switch is turned on or off to match the boolean and will repeat the action until the desired state is achieved.
+    It will ensure the switch is turned on or off to match the boolean and will repeat the action until the desired state is achieved, 
+    or the maximum number of attempts is reached.
   domain: automation
+
   input:
     boolean_entity:
       name: Input Boolean
@@ -12,12 +13,14 @@ blueprint:
       selector:
         entity:
           domain: input_boolean
+
     switch_entity:
       name: Switch
       description: The switch entity to be controlled by the boolean.
       selector:
         entity:
           domain: switch
+
     delay_time:
       name: Delay Time Between Checks
       description: The amount of time to wait between each check to see if the switch has been set to the correct state.
@@ -28,9 +31,10 @@ blueprint:
           max: 3600
           unit_of_measurement: seconds
           mode: box
+
     attempts:
-      name: attempts
-      description: The amount of attempts to wtry to see if the switch has been set to the correct state.
+      name: Maximum Attempts
+      description: The number of attempts to try synchronizing the switch with the boolean before giving up.
       default: 60
       selector:
         number:
