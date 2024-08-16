@@ -1,9 +1,10 @@
 blueprint:
-  name: Synchronize Up to 10 Switches with Control Entity
+  name: Synchronize (1-10) switches with control entity in parallel (symultaniously).
   description: >
     This blueprint synchronizes up to ten switches with the state of a control entity.
     The control entity can be either a switch or an input_boolean.
     It will ensure the switches are turned on or off to match the control entity and will repeat the action until the desired state is achieved for each switch.
+    It also will stop if controll entity is swiched to other state.
   domain: automation
 
   input:
